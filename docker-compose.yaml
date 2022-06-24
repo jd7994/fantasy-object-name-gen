@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  service_1:
+    image: 
+    build: 
+    container_name:
+    networks:
+      - name-net
+  service_2:
+   image: 
+    build: 
+    container_name:
+    networks:
+      - name-net
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    networks:
+      - name-net
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+    depends_on:
+      - service_1
+networks:
+  name-net:

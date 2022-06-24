@@ -1,6 +1,9 @@
 from application import app
-from random import randint
+from random import choice
 
-@app.route('INSERT ROUTE HERE', methods=['GET'])
-#PUT IT HERE
-#essentially we just return a value and then it'll be captured in routes of service 1
+@app.route('/rand_2', methods=['GET'])
+def rand_2(): #changethis
+    sources = ["flame", "earth", "water", "air", "celestial", "hellish", "occult", "infernal", "void", "fey", "shadow", "enchanted", "illusion", "abberative"]
+    selection = choice(sources)
+    return selection
+    
