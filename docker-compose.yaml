@@ -1,15 +1,23 @@
 version: "3.8"
 services:
   service_1:
-    image: 
-    build: 
-    container_name:
+    build: ./service_1
+    container_name: service_1
     networks:
       - name-net
   service_2:
-   image: 
-    build: 
-    container_name:
+    build: ./service_2
+    container_name: service_2
+    networks:
+      - name-net
+  service_3:
+    build: ./service_3
+    container_name: service_3
+    networks:
+      - name-net
+  service_4: 
+    build: ./service_4
+    container_name: service_4
     networks:
       - name-net
   nginx:
