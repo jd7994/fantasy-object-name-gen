@@ -23,7 +23,7 @@ earth = ['verdant', 'gladed', 'crystal']
 water = ['fathomless', 'diver\'s', 'sunless', 'quenched']
 air = ['sunkissed', 'frigid', 'rimed', 'gale-wrought']
 celestial = ['holy', 'sacrosanct', 'promised', 'radient', 'sacred']
-hellish = ['gnarled', 'forsworn', 'abandoned', 'imp\'s', 'ever-burning']
+hellish = ['gnarled', 'forsworn', 'abandoned', 'imp\'s', 'ever-burning', 'beast\'s']
 occult = ['omen\'d', 'six-fingered', 'woe-known', 'forgotten', 'blighted', 'cursed', 'true']
 infernal = ['ravening', 'blistering', 'puckering', 'long-buried', 'ever-weeping']
 void = ['black', 'terrible', 'unknowable', 'dark', 'forgotten', 'star-wrought']
@@ -40,7 +40,7 @@ def final():
     the_source = data_sent["source"]
     
     if the_source == 'flame':
-        fin_souce = choice(flame)
+        fin_source = choice(flame)
     elif the_source == 'earth':
         fin_source = choice(earth)
     elif the_source == 'water':
@@ -100,11 +100,13 @@ def final():
         fin_obj = choice(fort)
 
 
-    cap_source = fin_source[0].upper() + fin_source[1:]
-    cap_obj = fin_obj[0].upper() + fin_obj[1:]
+    cap_source = fin_source.capitalize()
+    cap_obj = fin_obj.capitalize()
     #first version
     return f"The {cap_source} {cap_obj}"
+
     #second version
-    #if fin_source[-1] == "s" & fin_source[-2] == "'":
-    #     fin_source = fin_source[0:(len(fin_source)-2)]
-    #return f"${fin_obj}, the ${fin_source}"
+    #if cap_source[-1] == "s" and cap_source[-2] == "'":
+    #    return f"{cap_obj}, The {cap_source[0:-2]}"
+    #else: 
+    #    return f"{cap_obj}, The {cap_source}"
