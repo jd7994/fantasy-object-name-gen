@@ -19,5 +19,6 @@ def index():
     
     
     
-#PUT IT HERE
-#essentially we just return a value and then it'll be captured in routes of service 1
+#TODO testing! test test test! thankyou!
+#then i guess we make a pipeline project on jenkins, and deploy to docker swarm
+#then finally i think we work on ansible, either integrating it into the pipeline build or using it as an overall controller
