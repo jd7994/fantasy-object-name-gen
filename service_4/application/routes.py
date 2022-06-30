@@ -33,11 +33,12 @@ enchanted = ['shining', 'glowing', 'sparkling', 'keening']
 illusion = ['eye-covered', 'ever-twirling', 'endless']
 abberative = ['otherworldly', 'incomprehensible', 'beholder\'s', 'quivering']
 
-@app.route('/final')
+@app.route('/final', methods=['GET', 'POST'])
 def final():
     data_sent = request.get_json()
-    the_obj = data_sent[obj]
-    the_source = data_sent[source]
+    the_obj = data_sent["obj"]
+    the_source = data_sent["source"]
+    
     if the_source == 'flame':
         fin_souce = choice(flame)
     elif the_source == 'earth':
@@ -46,25 +47,25 @@ def final():
         fin_source = choice(water)
     elif the_source == 'air':
         fin_source = choice(air)
-    elif the_source == 'celestial':
+    elif the_source == 'the celestial':
         fin_source = choice(celestial)
-    elif the_source == 'hellish':
+    elif the_source == 'hellfire':
         fin_source = choice(hellish)
-    elif the_source == 'occult':
+    elif the_source == 'the occult':
         fin_source = choice(occult)
-    elif the_source == 'infernal':
+    elif the_source == 'the infernal':
         fin_source = choice(infernal)
-    elif the_source == 'void':
+    elif the_source == 'the void':
         fin_source = choice(void)
     elif the_source == 'fey':
         fin_source = choice(fey)
     elif the_source == 'shadow':
         fin_source = choice(shadow)
-    elif the_source == 'enchanted':
+    elif the_source == 'enchantment':
         fin_source = choice(enchanted)
     elif the_source == 'illusion':
         fin_source = choice(illusion)
-    elif the_source == 'abberative':
+    elif the_source == 'abberation':
         fin_source = choice(abberative)
       
     if the_obj == 'prison':
@@ -98,4 +99,12 @@ def final():
     elif the_obj == 'fortress':
         fin_obj = choice(fort)
 
-    return f"The ${fin_souce} ${fin_obj}"
+
+    cap_source = fin_source[0].upper() + fin_source[1:]
+    cap_obj = fin_obj[0].upper() + fin_obj[1:]
+    #first version
+    return f"The {cap_source} {cap_obj}"
+    #second version
+    #if fin_source[-1] == "s" & fin_source[-2] == "'":
+    #     fin_source = fin_source[0:(len(fin_source)-2)]
+    #return f"${fin_obj}, the ${fin_source}"

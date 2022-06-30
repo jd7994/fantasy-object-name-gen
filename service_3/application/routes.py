@@ -3,7 +3,7 @@ from random import choice
 
 @app.route('/rand_2', methods=['GET'])
 def rand_2(): #changethis
-    sources = ["flame", "earth", "water", "air", "celestial", "hellish", "occult", "infernal", "void", "fey", "shadow", "enchanted", "illusion", "abberative"]
+    sources = ["flame", "earth", "water", "air", 'the celestial', "hellfire", "the occult", "the infernal", "the void", "fey", "shadow", "enchantment", "illusion", "abberation"]
     selection = choice(sources)
     return selection
     
