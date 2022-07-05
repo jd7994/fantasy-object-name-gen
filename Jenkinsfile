@@ -5,7 +5,7 @@ pipeline {
             steps {
                 sh '''#!/bin/bash
                     sudo apt update
-                    sudo apt autoremove
+                    sudo apt autoremove -f
                     sudo mkdir -p ~/.local/bin
                     sudo echo 'PATH=$PATH:~/.local/bin' >> ~/.bashrc
                     source ~/.bashrc
@@ -33,6 +33,7 @@ pipeline {
                     pip3 install -r requirements.txt
                     cd ..
                     python3 -m pytest service_1 --cov=application --cov-report=html
+                    sudo rm -rf serv_1_results/
                     mv htmlcov/ serv_1_results/'''
                 archiveArtifacts artifacts: 'serv_1_results/'
             }
@@ -48,6 +49,7 @@ pipeline {
                     pip3 install -r requirements.txt
                     cd ..
                     python3 -m pytest service_2 --cov=application --cov-report=html
+                    sudo rm -rf serv_2_results/
                     mv htmlcov/ serv_2_results/'''
                 archiveArtifacts artifacts: 'serv_2_results/'
             }
@@ -63,6 +65,7 @@ pipeline {
                     pip3 install -r requirements.txt
                     cd ..
                     python3 -m pytest service_3 --cov=application --cov-report=html
+                    sudo rm -rf serv_3_results/
                     mv htmlcov/ serv_3_results/'''
                 archiveArtifacts artifacts: 'serv_3_results/'
             }
@@ -78,6 +81,7 @@ pipeline {
                     pip3 install -r requirements.txt
                     cd ..
                     python3 -m pytest service_4 --cov=application --cov-report=html
+                    sudo rm -rf serv_4_results/
                     mv htmlcov/ serv_4_results/
                     sudo rm -rf venv'''
                 archiveArtifacts artifacts: 'serv_4_results/'
@@ -87,6 +91,7 @@ pipeline {
         stage('Emptying Jenkins VM') {
             steps {
                 sh '''#!/bin/bash
+                    cd /home/jenkins/.jenkins/workspace
                     sudo rm -rf *'''
             }
         }
