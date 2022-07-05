@@ -88,7 +88,6 @@ pipeline {
             }
         }
 
-
         stage('Instigate Docker') {
             steps {
                 sh '''#!/bin/bash
