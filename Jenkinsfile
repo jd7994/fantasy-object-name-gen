@@ -4,8 +4,8 @@ pipeline {
         stage('Setup & Install Ansible') {
             steps {
                 sh '''#!/bin/bash
-                    mkdir -p ~/.local/bin
-                    echo 'PATH=$PATH:~/.local/bin' >> ~/.bashrc
+                    sudo mkdir -p ~/.local/bin
+                    sudo echo 'PATH=$PATH:~/.local/bin' >> ~/.bashrc
                     source ~/.bashrc
                     sudo apt install python3
                     sudo apt install python3-pip -y
