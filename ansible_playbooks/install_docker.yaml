@@ -14,6 +14,7 @@
         - curl
         - gnupg-agent
         - software-properties-common
+        - python3-docker
     - name: add GPG key
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
