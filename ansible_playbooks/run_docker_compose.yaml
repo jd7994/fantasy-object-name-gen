@@ -1,5 +1,5 @@
----
 - name: Run using a project directory
+  hosts: swarm-master
   gather_facts: no
   tasks:
     - name: Tear down existing services
@@ -14,7 +14,7 @@
         networks: yes
         volumes: yes
         builder_cache: yes
-
+        
     - name: Create and start services
       community.docker.docker_compose:
         project_src: /
