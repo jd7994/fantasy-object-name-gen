@@ -4,6 +4,8 @@ pipeline {
         stage('Setup & Install Ansible') {
             steps {
                 sh '''#!/bin/bash
+                    sudo apt update
+                    sudo apt autoremove
                     sudo mkdir -p ~/.local/bin
                     sudo echo 'PATH=$PATH:~/.local/bin' >> ~/.bashrc
                     source ~/.bashrc
