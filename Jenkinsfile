@@ -88,13 +88,6 @@ pipeline {
             }
         }
 
-        stage('Emptying Jenkins VM') {
-            steps {
-                sh '''#!/bin/bash
-                    cd /home/jenkins/.jenkins/workspace
-                    sudo rm -rf *'''
-            }
-        }
 
         stage('Instigate Docker') {
             steps {
