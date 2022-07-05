@@ -1,0 +1,7 @@
+---
+- name: Clone down a git repo
+  ansible.builtin.git:
+    repo: https://github.com/jd7994/fantasy-object-name-gen.git
+    dest: /fan-gen
+    single_branch: yes
+    version: main

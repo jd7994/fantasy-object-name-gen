@@ -1,0 +1,70 @@
+- name: Run using a project directory
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Tear down existing services
+      community.docker.docker_compose:
+        project_src: /
+        state: absent
+
+    - name: Prune everything
+      docker_prune:
+        containers: yes
+        images: yes
+        networks: yes
+        volumes: yes
+        builder_cache: yes
+        
+    - name: Create and start services
+      community.docker.docker_compose:
+        project_src: /
+      register: output
+
+    - ansible.builtin.debug:
+        var: output
+
+    - name: Run `docker-compose up` again
+      community.docker.docker_compose:
+        project_src: /
+        build: yes
+      register: output
+
+    - ansible.builtin.debug:
+        var: output
+
+    - ansible.builtin.assert:
+        that: "not output.changed "
+
+    - name: Stop all services
+      community.docker.docker_compose:
+        project_src: /
+        build: no
+        stopped: yes
+      register: output
+
+    - ansible.builtin.debug:
+        var: output
+
+    - ansible.builtin.assert:
+        that:
+          - "not fan_gen.service_1.state.running"
+          - "not fan_gen.service_2.state.running"
+          - "not fan_gen.service_3.state.running"
+          - "not fan_gen.service_4.state.running"
+
+    - name: Restart services
+      community.docker.docker_compose:
+        project_src: /
+        build: no
+        restarted: yes
+      register: output
+
+    - ansible.builtin.debug:
+        var: output
+
+    - ansible.builtin.assert:
+        that:
+          - "fan_gen.service_1.state.running"
+          - "fan_gen.service_2.state.running"
+          - "fan_gen.service_3.state.running"
+          - "fan_gen.service_4.state.running"

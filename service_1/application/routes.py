@@ -5,7 +5,7 @@ from random import randint
 
 #this is the main route, that nginx will direct to
 @app.route('/')
-def index():
+def home():
     obj = requests.get('http://service_2:5000/rand_1').text
     source = requests.get('http://service_3:5000/rand_2').text
     
