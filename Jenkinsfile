@@ -76,7 +76,8 @@ pipeline {
                     pip3 install -r requirements.txt
                     cd ..
                     python3 -m pytest service_4 --cov=application --cov-report=html
-                    mv htmlcov/ serv_4_results/'''
+                    mv htmlcov/ serv_4_results/
+                    sudo rm -rf venv'''
                 archiveArtifacts artifacts: 'serv_4_results/'
             }
         }
