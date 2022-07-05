@@ -1,5 +1,5 @@
 - name: Run using a project directory
-  hosts: swarm-master
+  hosts: all
   gather_facts: no
   tasks:
     - name: Tear down existing services
