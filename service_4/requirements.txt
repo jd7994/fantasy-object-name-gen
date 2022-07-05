@@ -1,1 +1,5 @@
 flask
+pytest
+pytest-cov
+flask_testing
+random
