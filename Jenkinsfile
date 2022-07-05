@@ -5,6 +5,7 @@ pipeline {
             steps {
                 sh '''#!/bin/bash
                     sudo apt update
+                    sudo apt upgrade -f
                     sudo apt autoremove -f
                     sudo mkdir -p ~/.local/bin
                     sudo echo 'PATH=$PATH:~/.local/bin' >> ~/.bashrc
