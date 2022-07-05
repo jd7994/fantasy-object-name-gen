@@ -27,7 +27,7 @@ pipeline {
                     sudo rm -rf venv
                     python3 -m venv venv
                     source venv/bin/activate
-                    cd service_1
+                    cd /home/jenkins/.jenkins/workspace/fan_gen/service_1
                     pip3 install -r requirements.txt
                     cd ..
                     python3 -m pytest service_1 --cov=application --cov-report=html
@@ -42,7 +42,7 @@ pipeline {
                     sudo rm -rf venv
                     python3 -m venv venv
                     source venv/bin/activate
-                    cd service_2
+                    cd /home/jenkins/.jenkins/workspace/fan_gen/service_2
                     pip3 install -r requirements.txt
                     cd ..
                     python3 -m pytest service_2 --cov=application --cov-report=html
@@ -57,7 +57,7 @@ pipeline {
                     sudo rm -rf venv
                     python3 -m venv venv
                     source venv/bin/activate
-                    cd service_3
+                    cd home/jenkins/.jenkins/workspace/fan_gen/service_3
                     pip3 install -r requirements.txt
                     cd ..
                     python3 -m pytest service_3 --cov=application --cov-report=html
@@ -72,7 +72,7 @@ pipeline {
                     sudo rm -rf venv
                     python3 -m venv venv
                     source venv/bin/activate
-                    cd service_4
+                    cd /home/jenkins/.jenkins/workspace/fan_gen/service_4
                     pip3 install -r requirements.txt
                     cd ..
                     python3 -m pytest service_4 --cov=application --cov-report=html
