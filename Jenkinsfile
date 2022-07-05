@@ -59,7 +59,7 @@ pipeline {
                     sudo rm -rf venv
                     python3 -m venv venv
                     source venv/bin/activate
-                    cd home/jenkins/.jenkins/workspace/fan_gen/service_3
+                    cd /home/jenkins/.jenkins/workspace/fan_gen/service_3
                     pip3 install -r requirements.txt
                     cd ..
                     python3 -m pytest service_3 --cov=application --cov-report=html
