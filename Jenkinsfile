@@ -27,7 +27,9 @@ pipeline {
                     sudo rm -rf venv
                     python3 -m venv venv
                     source venv/bin/activate
+                    cd service_1
                     pip3 install -r requirements.txt
+                    cd ..
                     python3 -m pytest service_1 --cov=application --cov-report=html
                     mv htmlcov/ serv_1_results/'''
                 archiveArtifacts artifacts: 'serv_1_results/'
@@ -40,7 +42,9 @@ pipeline {
                     sudo rm -rf venv
                     python3 -m venv venv
                     source venv/bin/activate
+                    cd service_2
                     pip3 install -r requirements.txt
+                    cd ..
                     python3 -m pytest service_2 --cov=application --cov-report=html
                     mv htmlcov/ serv_2_results/'''
                 archiveArtifacts artifacts: 'serv_2_results/'
@@ -53,7 +57,9 @@ pipeline {
                     sudo rm -rf venv
                     python3 -m venv venv
                     source venv/bin/activate
+                    cd service_3
                     pip3 install -r requirements.txt
+                    cd ..
                     python3 -m pytest service_3 --cov=application --cov-report=html
                     mv htmlcov/ serv_3_results/'''
                 archiveArtifacts artifacts: 'serv_3_results/'
@@ -66,7 +72,9 @@ pipeline {
                     sudo rm -rf venv
                     python3 -m venv venv
                     source venv/bin/activate
+                    cd service_4
                     pip3 install -r requirements.txt
+                    cd ..
                     python3 -m pytest service_4 --cov=application --cov-report=html
                     mv htmlcov/ serv_4_results/'''
                 archiveArtifacts artifacts: 'serv_4_results/'
