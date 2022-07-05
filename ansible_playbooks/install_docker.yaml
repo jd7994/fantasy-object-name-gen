@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  remote_user: ubuntu
+  remote_user: jenkins
   become: true
   tasks:
     - name: install dependencies
@@ -40,9 +40,9 @@
       ansible.builtin.group:
         name: docker
         state: present
-    - name: adding ubuntu to docker group
+    - name: adding jenkins to docker group
       user:
-        name: ubuntu
+        name: jenkins
         groups: docker
         append: yes
     - name: Install docker-compose
@@ -53,5 +53,5 @@
     - name: Change file ownership, group and permissions
       ansible.builtin.file:
         path: /usr/local/bin/docker-compose
-        owner: ubuntu
-        group: ubuntu
+        owner: jenkins
+        group: jenkins
