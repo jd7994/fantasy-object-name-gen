@@ -12,6 +12,7 @@
         - gnupg-agent
         - software-properties-common
         - python3-docker
+        - python3-pip3
         update_cache: yes
     - name: add GPG key
       apt_key:
