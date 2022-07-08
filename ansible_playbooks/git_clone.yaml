@@ -7,4 +7,4 @@
       repo: https://github.com/jd7994/fantasy-object-name-gen.git
       dest: /fan-gen
       clone: yes
-      version: dev
+      version: main
