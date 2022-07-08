@@ -74,75 +74,61 @@ Progress throughout the project will be tracked using the Jira Board, made for a
 I created models for the various services of the project, and then a plan for the ultimate deployment of the app. I intend to put a webhook in place, allowing for automatic updates by jenkins, which will instigate ansible, allowing us to automate the installation of any requirements, as well as run the project automatically on the swarm-master VM.  
 
 ![Project service layout_1](https://user-images.githubusercontent.com/100293943/177530969-2873a3da-adc8-49d8-9cf0-05b674c403fd.jpg)
+
 The brief called for a second iteration of the project, the concept for which is below:
 ![Second iteration concept_1](https://user-images.githubusercontent.com/100293943/177531007-ea14fa0b-85aa-4f9a-9e33-301d1169ada8.jpg)
+
 And finally, a general overview of the project layout:
 ![Project layout_1](https://user-images.githubusercontent.com/100293943/177531259-cc8e8f5d-33b7-4d8d-b763-d58fbb5e2e7f.jpg)
 
 
 _____YOU GOT TO HERE, JON _______<<<<<<<<<<<<<
-While designing the model, I realised quickly that implementing both a foods liked and foods disliked field would be complicated, both in terms of back-end and front facing UI - already we're looking at a many to many relationship, so doubling up that relationship seemed like something that could potentially be added to the app later if there was time. Using MoSCoW principles, I decided specifying what the cats liked was a Must and what the cats did not like was a Could. I also realised that I'd be looking at another many to many relationship including the medical care information for the cats, so decided to simplify. Instead of a full care app, the cat-carer-5000 will aim specifically at feeding the cats food that they like the most. Given the time constraints of the project, that seemed like a more reasonable aim. Other aspects of care could be added later. Obviously this change would reflect a change in the DoD (definition of done). 
+
 
 ## Definition of Done
-With these adjustments made to the project, I've focused and redefined and am ready to consider the DoD(definition of done) for each main task on the project. 
 - Testing must be written and passed with 100% coverage
 - Features must meet or excell acceptance criteria
 
 ## Risk Assessment
 With a small project like this handling non-sensitive data, the risks are not particularly severe, but a risk assessment has been carried out, the results of which are below.
 
-![Risk Assessment - Sheet1_1](https://user-images.githubusercontent.com/100293943/173845149-5f125b6e-e14a-43db-aa75-c55f54f34703.jpg)
+![Risk assessment_1](https://user-images.githubusercontent.com/100293943/177957057-1e44ba0c-f33c-46a3-8eaa-92c1ff7376dd.jpg)
 
-Another way the project could be extended in the future would be add the funcionality to login as a particular user and access only your own files. As the app stands at the moment, it's only suitable for one user, as all information will be available to anyone who uses it. 
 
 ## Implementation and Adaption
-![routes models](https://user-images.githubusercontent.com/100293943/173849618-379e6533-a879-46e4-89bc-db18ec6ed669.jpg)
-(Above is the implementation in progress, below is the first version of the home page, displayed for the first time)
-![First sign of life](https://user-images.githubusercontent.com/100293943/173846006-6bf44dc8-4263-4e11-8d0d-c918bd81fb90.jpg)
+![serv-1-examp](https://user-images.githubusercontent.com/100293943/177959078-e0cd7654-73e9-4a6f-89df-83f18851a09d.jpg)
 
-Creating the code and building functionality was fairly trouble free, apart from one feature - I was keen to implement a page that allowed the user to pick form the list of foods which foods their cat liked. This required me to create a form with a field for each item on the food table in the database. 
+The app makes a lot of use of the "random" module, particularly "choice", allowing me to use a hard coded list of options that the module would randomly select from. Service four makes use of a dictionary to add some further variety - each choice has a list of synonyms prepared so the user should get a different response each time they reload their web page. I initially programmed this as a long tower of if statements, but after discussing with my cohorts about ways to improve the readability and "cleanliness" of my code, I settled on this approach (thank you for the tip, Liam!). 
 
-This proved quite tricky, shifting several 'for loops' around, and experimenting with feeding various types of data into jinja2 to get the desired response. Eventually it worked as intended, but I still had a problem. The form is instantiated when the app is launched, and if you then add a food item to it, because the route to the page expects a field for each food item in the database, the table is a field short because it doesn't update each time an item is added, only each time the app restarts. 
+![serv-4-examp](https://user-images.githubusercontent.com/100293943/177959540-19917a08-73c0-4d96-ab81-b0ccde8e5f57.jpg)
 
-Here's the error I keep running into:
-![error2](https://user-images.githubusercontent.com/100293943/171618127-a9f79a35-1b9f-4212-b2ca-36ab5f8f1bf8.jpg)
-![error3](https://user-images.githubusercontent.com/100293943/171618132-ab510139-4c62-46f6-89e1-c22767d91a41.jpg)
-![error1](https://user-images.githubusercontent.com/100293943/171618135-cc8fcb75-590e-4502-bf80-dc004196dc86.jpg)
+Also visible here is the "second iteration" of the app requested, a small change that can demonstrate its capability to perform rolling updates. I've commented it out for now, but it could be committed to a new feature branch whenver convenient. 
 
-
-At first I thought I'd have to completely remove the many to many fuctionality, which was frustrating - the relationships and tables actually worked fine, the issue was really related to the way I wanted to display that information to the user. This was when I created the devlight branch, and began simplifying substantially. 
-
-Thanks to the extension granted to our group, I was able to keep my many to many functionality and shift around how I use and display the information. I decided that to prove the concept of the app, I'd hard code a good number of food objects, still allowing the user to enter the main focus of the app, their cats. This allows us to keep the complex relationships and good functionality of the app as a whole, but removes the functionality of intelligently adaptive form fields for the food objects. I feel that at this stage of my training it's reasonable to demonstrate the potential for the app without implementing this complicated functionality. This change also reflects a change in the DoD(definition of done). 
 
 ## Unit Testing
-Once I'm confident the webapp is stable and functional, I begin work on unit testing. This ensures the app performs as expected and responds in a predictable way to data entry, as well as get requests to all routes associated with the app and post requests to any routes that allow them. Testing was achieved by considering all functionality of each page, and then implementing code to test all aspects of that functionality. After thorough testing, I'm able to achieve 99% coverage. 
-![Test Coverage](https://user-images.githubusercontent.com/100293943/173849662-1fba4c38-60cf-4b3b-86b3-e58c5a2cbaf9.jpg)
+As the app is relatively simple, it wasn't too difficult to achieve 100% - as the four services are separate entities, they must be tested serparately. Any time a service relies on input from another (for example, service 1) we can "mock" the response to check the app behaves as expected. 
 
-The final 1% is a single line of code that functions only to populate a list to feed information into a html template. This last 1% took me a while!
-![1% not covered by testing](https://user-images.githubusercontent.com/100293943/173853954-20ab26f3-da02-42f0-9a91-405bb8ecec14.jpg)
+The other three services take input, but then perform their function and return the result, so no mocking was necessary - we could test them normally with http requests. 
 
-I adapt and implement code adding a test food_like relationship, and then check the liked food is present in the final template displayed. This allows me to achieve 100% test coverage. ![final_touch](https://user-images.githubusercontent.com/100293943/173854913-914c2e17-5e3d-4e29-978b-c248184294ec.jpg)
+I had to think for a moment on how to test something that's designed to be random - eventually I realised that if I feed in a specific input, I could just check whether the response was in the list of repsonses expected. 
 
-![SUCCESS](https://user-images.githubusercontent.com/100293943/173854293-7ed1ebe4-9405-4262-9718-544806e421df.jpg)
-It is at this point that I begin pushing to main. 
+![tsting-s-4 jgp](https://user-images.githubusercontent.com/100293943/177961231-42186006-240b-42c8-b29e-7590ec5e0c2d.jpg)
+
 
 ## System Integration, Deployment, and Build
-I'll be integrating Jenkins to produce builds of this project, as well as automating testing on new commits. I planned in integrate the app through a pipeline project to accurately view the separate stages of the build. Because of the way Jenkins runs projects, to allow a build to "complete" while still running the app, I chose to use a linux systemd service file to create a service to handle the running of the app - this allows Jenkins to start (or restart) that process, as well as producing and running tests, performing maintenence and keeping a clean deployment space. That way, our Jenkins build will complete properly, but our app will run perpetually. 
-![systemd-service-file-on-deploy](https://user-images.githubusercontent.com/100293943/174312116-f9787ddf-f363-4f01-937f-babbe9139dc4.jpg)
+Particularly on a app like this with multiple stages and components, a pipeline build is really helpful to visualise the different stages of deployment. Jenkins allows us to do this nicely, and will act as the CI server for this project. From there, Jenkins will perform our tests, archiving the results for easy viewing, install and instigate Ansible. Ansible then kicks into action, installing everything our deployment environment needs to run our docker containers, then instigating them in unison using docker-compose. 
 
-Above you can see the .service file has been fed everything it needs to work properly, our environment variables and the sources for the commands that are used to start it up.
+![an-installing-d](https://user-images.githubusercontent.com/100293943/177962362-758dbc71-3059-4527-93e8-eccf5f6d16ce.jpg)
 
-I also applied a webhook from our github repository, meaning that any time a new push is made to the repo, Jenkins will spin up a new build, performing tests (and returning those test results as a downloadable artifact), launching the systemd process on the deployment VM. It will do all of this automatically, following a jenkinsfile:  
-![jenkinsfilefinal](https://user-images.githubusercontent.com/100293943/174305500-7fc17fb8-7644-498d-93ab-a23ee7aba27a.jpg)
 
-![the successful build](https://user-images.githubusercontent.com/100293943/174305564-715927ac-7dc6-4a42-8f5d-115187b33545.jpg)
+![jenkins-calling-an](https://user-images.githubusercontent.com/100293943/177962582-ec5d92a3-8bcc-449d-9e15-e3048b7eccb6.jpg)
+
+Above is the jenkinsfile calling on various ansible playbooks for the automation of various pieces of installation and preparation for the app's function. 
+A webhook ensures rolling updates are easily achieved, meaning jenkins will start a new build each time the main codebase is updated. 
+NGINX acts as a reverse proxy, displaying only service 1 to the user (our frontend) no matter what they put into the address bar. Nginx is also installed and managed by docker and dockercompose.
 
 ## Reflection
-This app has been an excellent lesson in project planning and management - because I was overambitous in the scope of the project, I had to adapt my plans throughout to meet realistic and achievable goals. This is an excellent lesson to take forwards - keep plans grounded, and based in code currently achievable by your skill level. More careful planning would have made this project easier. 
-
-Another issue I ran into was I lapsed in keeping my Jira board updated after the first week of the project - our timescale shifted dramtically, meaning my plan for the project and timescale changed dramatically as well. In hindsight, my first job when learning this should have been updating my Jira to keep my day to day achievements managable and reasonable. 
-
-Finally, I followed what I now know is incorrect professional protocol in pushing my project to main - my logic at the time of this project was I carefully kept the project on a dev (or devlight) branch, but once the app was stable and functional I pushed to main. I now know that I should have then created a new dev or deployment branch, worked on that branch until my deployment was functional and complete, then merged with main again. Because I considered the project itself (that is, the code itself) complete, I thought it was fine to keep pushing to main. I now understand this is unacceptable. 
+In comparison with my first project, this has run an enourmous amount more smoothly. With more idea of what to expect, I was able to plan my time effectively, and I have no doubt that had I not had a positive covid result on the second day of the project and been bedbound for several days, I'd have been able to achieve my ambitious goals of using ansible to instigate GCP instances, meaning the app can start up with even less user input. Sadly, both this and use of an Orchestration Manager was not possible in the time frame. Despite this, I'm proud of the app, simple as it is, and I think it seems durible. 
 
 ## Final Thoughts
-Through this project I built an upp using Python, making use of Flask to create intelligent, recreatable templates. I stored information for the app across several tables on an SQL database, using a one to many table and a many to many table. I've implemented the app through a Jenkins pipeline system, allowing for automation of thorough testing (using pytest) and automatic deployment on a dedicated deployment Virtual Machine. I feel my project made a few basic mistakes that are understandable for a new developer, but overall I'm pleased with the function of the project and I feel I implemented the requirements well. 
+Through this project I built an upp using Python, making use of Flask and a html template. I used the random module in seperate containerised services to select from a list of objects and descriptives, then combined those two items in a third containerised service, before displaying it on a final service. The containers are managed using docker-compose, and the final result is displayed to the user using nginx, in a backwards proxy setup. 
