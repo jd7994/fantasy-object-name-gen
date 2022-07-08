@@ -20,7 +20,7 @@ pipeline {
         
         stage('Get Code for Testing') {
             steps {
-                git branch: 'dev', changelog: false, poll: false, url: 'https://github.com/jd7994/fantasy-object-name-gen.git'
+                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/jd7994/fantasy-object-name-gen.git'
             }
         }
       
