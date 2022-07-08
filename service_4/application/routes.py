@@ -49,12 +49,12 @@ def final():
     cap_source = fin_source.capitalize()
     cap_obj = fin_obj.capitalize()
     #first version
-    #return f"The {cap_source} {cap_obj}"
+    return f"The {cap_source} {cap_obj}"
 
     #second version
-    if cap_source[-1] == "s" and cap_source[-2] == "'":
-        return f"{cap_obj}, The {cap_source[0:-2]}"
-    else: 
-        return f"{cap_obj}, The {cap_source}"
+    #if cap_source[-1] == "s" and cap_source[-2] == "'":
+    #    return f"{cap_obj}, The {cap_source[0:-2]}"
+    #else: 
+    #    return f"{cap_obj}, The {cap_source}"
 
     
