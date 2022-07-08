@@ -30,27 +30,13 @@
 -[Final Thoughts](#final_thoughts)
 
 
-Deployment:
-Jenkins pulls code from github
-Jenkins runs tests on code. 
-Assuming good test results, Jenkins installs ansible.
-If we want to get real fancy...
-Ansible spins up docker swarm deployment VMs, installs docker and docker-compose, installs requirements for the app
-Installs Nginx. Sets up nginx service file from repo, sets up systemd service file from repo. 
-Commands app to run
-Nginx displays app to user
-
-
-
-
-
 -----
 ## User Story
 <details>
 <summary>Click to show user story</summary>
   
   
-1. As someone who has an internet connection, \ I want a random fantasy style object,\ For inspiration, to add to a story, or just for fun.
+1. As someone who has an internet connection: I want a random fantasy style object: For inspiration, to add to a story, or just for fun.
 
 
 </details>
@@ -116,6 +102,10 @@ I had to think for a moment on how to test something that's designed to be rando
 
 
 ## System Integration, Deployment, and Build
+
+![lots of box](https://user-images.githubusercontent.com/100293943/177978247-d02b560a-508a-4288-90dc-7d0fceb81d7f.jpg)
+
+
 Particularly on a app like this with multiple stages and components, a pipeline build is really helpful to visualise the different stages of deployment. Jenkins allows us to do this nicely, and will act as the CI server for this project. From there, Jenkins will perform our tests, archiving the results for easy viewing, install and instigate Ansible. Ansible then kicks into action, installing everything our deployment environment needs to run our docker containers, then instigating them in unison using docker-compose. 
 
 ![an-installing-d](https://user-images.githubusercontent.com/100293943/177962362-758dbc71-3059-4527-93e8-eccf5f6d16ce.jpg)
