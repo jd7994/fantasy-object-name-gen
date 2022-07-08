@@ -8,3 +8,4 @@
       dest: /fan-gen
       clone: yes
       version: main
+      update: true
