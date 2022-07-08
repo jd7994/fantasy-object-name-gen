@@ -7,3 +7,5 @@ def rand_2():
     selection = choice(sources)
     return selection
     
+def new_func():
+    pass
