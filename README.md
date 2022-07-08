@@ -68,9 +68,6 @@ And finally, a general overview of the project layout:
 ![Project layout_1](https://user-images.githubusercontent.com/100293943/177531259-cc8e8f5d-33b7-4d8d-b763-d58fbb5e2e7f.jpg)
 
 
-_____YOU GOT TO HERE, JON _______<<<<<<<<<<<<<
-
-
 ## Definition of Done
 - Testing must be written and passed with 100% coverage
 - Features must meet or excell acceptance criteria
@@ -78,8 +75,9 @@ _____YOU GOT TO HERE, JON _______<<<<<<<<<<<<<
 ## Risk Assessment
 With a small project like this handling non-sensitive data, the risks are not particularly severe, but a risk assessment has been carried out, the results of which are below.
 
-![Risk assessment_1](https://user-images.githubusercontent.com/100293943/177957057-1e44ba0c-f33c-46a3-8eaa-92c1ff7376dd.jpg)
+![Risks_1](https://user-images.githubusercontent.com/100293943/177979256-bfe978a8-0f30-4be2-ab5a-1060eb399d03.jpg)
 
+Here one entry is particularly relevant as I caught covid whilst developing the app, which caused major delays in production! I was able to complete the app on time, at the cost of sacrificing a few of the final features of deployment. Because of good planning, I was still able to produce something on time. 
 
 ## Implementation and Adaption
 ![serv-1-examp](https://user-images.githubusercontent.com/100293943/177959078-e0cd7654-73e9-4a6f-89df-83f18851a09d.jpg)
