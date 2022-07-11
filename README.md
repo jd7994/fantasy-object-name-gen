@@ -30,27 +30,13 @@
 -[Final Thoughts](#final_thoughts)
 
 
-Deployment:
-Jenkins pulls code from github
-Jenkins runs tests on code. 
-Assuming good test results, Jenkins installs ansible.
-If we want to get real fancy...
-Ansible spins up docker swarm deployment VMs, installs docker and docker-compose, installs requirements for the app
-Installs Nginx. Sets up nginx service file from repo, sets up systemd service file from repo. 
-Commands app to run
-Nginx displays app to user
-
-
-
-
-
 -----
 ## User Story
 <details>
 <summary>Click to show user story</summary>
   
   
-1. As someone who has an internet connection, \ I want a random fantasy style object,\ For inspiration, to add to a story, or just for fun.
+1. As someone who has an internet connection: I want a random fantasy style object: For inspiration, to add to a story, or just for fun.
 
 
 </details>
@@ -82,9 +68,6 @@ And finally, a general overview of the project layout:
 ![Project layout_1](https://user-images.githubusercontent.com/100293943/177531259-cc8e8f5d-33b7-4d8d-b763-d58fbb5e2e7f.jpg)
 
 
-_____YOU GOT TO HERE, JON _______<<<<<<<<<<<<<
-
-
 ## Definition of Done
 - Testing must be written and passed with 100% coverage
 - Features must meet or excell acceptance criteria
@@ -92,8 +75,9 @@ _____YOU GOT TO HERE, JON _______<<<<<<<<<<<<<
 ## Risk Assessment
 With a small project like this handling non-sensitive data, the risks are not particularly severe, but a risk assessment has been carried out, the results of which are below.
 
-![Risk assessment_1](https://user-images.githubusercontent.com/100293943/177957057-1e44ba0c-f33c-46a3-8eaa-92c1ff7376dd.jpg)
+![Risks_1](https://user-images.githubusercontent.com/100293943/177979256-bfe978a8-0f30-4be2-ab5a-1060eb399d03.jpg)
 
+Here one entry is particularly relevant as I caught covid whilst developing the app, which caused major delays in production! I was able to complete the app on time, at the cost of sacrificing a few of the final features of deployment. Because of good planning, I was still able to produce something on time. 
 
 ## Implementation and Adaption
 ![serv-1-examp](https://user-images.githubusercontent.com/100293943/177959078-e0cd7654-73e9-4a6f-89df-83f18851a09d.jpg)
@@ -116,6 +100,10 @@ I had to think for a moment on how to test something that's designed to be rando
 
 
 ## System Integration, Deployment, and Build
+
+![lots of box](https://user-images.githubusercontent.com/100293943/177978247-d02b560a-508a-4288-90dc-7d0fceb81d7f.jpg)
+
+
 Particularly on a app like this with multiple stages and components, a pipeline build is really helpful to visualise the different stages of deployment. Jenkins allows us to do this nicely, and will act as the CI server for this project. From there, Jenkins will perform our tests, archiving the results for easy viewing, install and instigate Ansible. Ansible then kicks into action, installing everything our deployment environment needs to run our docker containers, then instigating them in unison using docker-compose. 
 
 ![an-installing-d](https://user-images.githubusercontent.com/100293943/177962362-758dbc71-3059-4527-93e8-eccf5f6d16ce.jpg)
